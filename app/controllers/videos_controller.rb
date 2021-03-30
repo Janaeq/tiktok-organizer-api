@@ -10,5 +10,6 @@ class VideosController < ApplicationController
             render json: video, except: [:created_at, :updated_at]
         else
             render json: {message: 'video does not exist'}
+        end
     end
 end
