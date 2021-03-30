@@ -4,6 +4,14 @@ class VideosController < ApplicationController
         render json: videos, except: [:created_at, :updated_at]
     end
 
+    def create 
+        # use api response to get embedded json
+    end
+
+    def new
+        # use api response to get embedded json
+    end
+
     def show
         video = Video.find_by(id: params[:id])
         if video
@@ -12,4 +20,14 @@ class VideosController < ApplicationController
             render json: {message: 'video does not exist'}
         end
     end
+
+    def delete
+        # delete the video that we don't want
+    end
+
+    # private
+
+    # def request_api(url)
+        
+    # end
 end
