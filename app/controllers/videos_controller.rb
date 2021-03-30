@@ -4,11 +4,11 @@ class VideosController < ApplicationController
         render json: videos, except: [:created_at, :updated_at]
     end
 
-    def create 
+    def new
         # use api response to get embedded json
     end
 
-    def new
+    def create 
         # use api response to get embedded json
     end
 

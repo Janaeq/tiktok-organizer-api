@@ -4,6 +4,14 @@ class CategoriesController < ApplicationController
         render json: CategorySerializer.new(categories).to_serialized_json
     end
 
+    def new
+        # create new category
+    end
+
+    def create
+        # create new category
+    end
+    
     def show
         category = Category.find_by(id: params[:id])
         if category
