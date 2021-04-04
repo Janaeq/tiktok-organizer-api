@@ -20,11 +20,6 @@ class CategoriesController < ApplicationController
         end
     end
 
-    def update
-        category.update(category_params)
-        render json: category
-    end
-
     def destroy
         category = Category.create(category_params)
         category.delete
