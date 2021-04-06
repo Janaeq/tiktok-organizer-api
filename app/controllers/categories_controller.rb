@@ -5,10 +5,12 @@ class CategoriesController < ApplicationController
     end
 
     def create
-        # create new category
-        #  do this before testing front end fetch
         category = Category.create(category_params)
-        render json: category
+        if category
+            render json: category
+        else
+            render json: {message: 'Please try again'}
+        end
     end
     
     def show
@@ -21,7 +23,7 @@ class CategoriesController < ApplicationController
     end
 
     def destroy
-        category = Category.create(category_params)
+        category = Category.find_by(id: params[:id])
         category.delete
         render json: {category_id: category.id}
     end
