@@ -6,10 +6,12 @@ class VideosController < ApplicationController
 
     def new
         # use api response to get embedded json
+        # implement this before testing out in JS
     end
 
     def create 
         # use api response to get embedded json
+        # implement this before testing out in JS
     end
 
     def show
@@ -28,6 +30,7 @@ class VideosController < ApplicationController
     # private
 
     # def request_api(url)
-        
+        # maybe need to make request to tiktok API to convert the short URL 
+        # provided by the user into the long URL required to embed content
     # end
 end
