@@ -8,6 +8,7 @@
 
 # CATEGORIES
 coffee = Category.create(id: 1, name: "Coffee")
+cats = Category.create(id: 2, name: "Cats")
 
 # VIDEOS
 sample_video = Video.create(url: "https://www.tiktok.com/@caffeinication/video/6940339533191957765", category_id: 1)
