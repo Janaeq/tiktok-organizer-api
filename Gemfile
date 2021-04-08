@@ -24,8 +24,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-# Use excon as an HTTP client
-gem 'excon'
+# Use HTTParty as an HTTP client
+gem 'httparty', '~> 0.13.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
