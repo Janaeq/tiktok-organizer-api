@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 2021_03_30_051825) do
 
   create_table "videos", force: :cascade do |t|
     t.string "url"
+    t.string "thumbnail_url"
+    t.string "embed_html"
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_videos_on_category_id"
   end
 
 end
