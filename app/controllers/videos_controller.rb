@@ -4,14 +4,16 @@ class VideosController < ApplicationController
         render json: videos, except: [:created_at, :updated_at]
     end
 
-    def new
-        # use api response to get embedded json
-        # implement this before testing out in JS
-    end
-
     def create 
-        # use api response to get embedded json
-        # implement this before testing out in JS
+        video = Video.new(video_params)
+        video.thumbnail_url = self.get_thumbnail(params[:video][:url])
+        video.embed_html = self.get_embedded_html(params[:video][:url])
+        video.save
+        if video
+            render json: video, except: [:create, :updated_at]
+        else
+            render json: {message: 'video does not exist'}
+        end
     end
 
     def show
@@ -27,10 +29,9 @@ class VideosController < ApplicationController
         # delete the video that we don't want
     end
 
-    # private
+    private
 
-    # def request_api(url)
-        # maybe need to make request to tiktok API to convert the short URL 
-        # provided by the user into the long URL required to embed content
-    # end
+    def video_params
+        params.require(:video).permit(:url, :category_id)
+    end
 end
