@@ -25,8 +25,10 @@ class VideosController < ApplicationController
         end
     end
 
-    def delete
-        # delete the video that we don't want
+    def destroy
+        video = Video.find_by(id: params[:id])
+        video.delete
+        render json: {message: 'Deleted'}
     end
 
     private
