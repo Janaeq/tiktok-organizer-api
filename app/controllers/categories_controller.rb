@@ -6,16 +6,16 @@ class CategoriesController < ApplicationController
 
     def create
         category = Category.create(category_params)
-        if category
+        if category.save
             render json: category
         else
-            render json: {message: 'Please try again'}
+            render json: {message: category.errors.full_messages.to_sentence}
         end
     end
     
     def show
         category = Category.find_by(id: params[:id])
-        if category
+        if category.save
             render json: CategorySerializer.new(category).to_serialized_json
         else
             render json: {message: 'Category does not exist'}
@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
     def destroy
         category = Category.find_by(id: params[:id])
         category.delete
-        render json: {category_id: category.id}
+        render json: {message: "Successfully Deleted"}
     end
 
     private

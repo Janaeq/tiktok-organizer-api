@@ -9,26 +9,26 @@ class VideosController < ApplicationController
         video.thumbnail_url = self.get_thumbnail(params[:video][:url])
         video.embed_html = self.get_embedded_html(params[:video][:url])
         video.save
-        if video
+        if video.save
             render json: video, except: [:create, :updated_at]
         else
-            render json: {message: 'video does not exist'}
+            render json: {message: video.errors.full_messages.to_sentence}
         end
     end
 
     def show
         video = Video.find_by(id: params[:id])
-        if video
+        if video.save
             render json: video, except: [:created_at, :updated_at]
         else
-            render json: {message: 'video does not exist'}
+            render json: {message: 'Video does not exist'}
         end
     end
 
     def destroy
         video = Video.find_by(id: params[:id])
         video.delete
-        render json: {message: 'Deleted'}
+        render json: {message: 'Successfully Deleted'}
     end
 
     private
