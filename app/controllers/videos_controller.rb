@@ -6,13 +6,16 @@ class VideosController < ApplicationController
 
     def create 
         video = Video.new(video_params)
-        video.thumbnail_url = self.get_thumbnail(params[:video][:url])
-        video.embed_html = self.get_embedded_html(params[:video][:url])
-        video.save
-        if video.save
-            render json: video, except: [:create, :updated_at]
+        if video.url == ""
+            render json: {error: "URL can't be blank", category_id: video.category_id}
         else
-            render json: {message: video.errors.full_messages.to_sentence}
+            video.thumbnail_url = self.get_thumbnail(params[:video][:url])
+            video.embed_html = self.get_embedded_html(params[:video][:url])
+            if video.save
+                render json: video, except: [:create, :updated_at]
+            else
+                render json: {error: 'Video does not exist', category_id: video.category_id}
+            end
         end
     end
 

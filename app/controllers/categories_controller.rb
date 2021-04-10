@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
         if category.save
             render json: category
         else
-            render json: {message: category.errors.full_messages.to_sentence}
+            render json: {error: category.errors.full_messages.to_sentence}
         end
     end
     
