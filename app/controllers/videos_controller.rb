@@ -31,7 +31,7 @@ class VideosController < ApplicationController
     def destroy
         video = Video.find_by(id: params[:id])
         video.delete
-        render json: {message: 'Successfully Deleted'}
+        render json: {message: 'Successfully Deleted', category_id: video.category_id}
     end
 
     private
