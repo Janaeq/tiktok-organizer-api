@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
     def index
         videos = Video.all 
-        render json: videos, except: [:created_at, :updated_at]
+        render json: videos
     end
 
     def create 
@@ -12,7 +12,7 @@ class VideosController < ApplicationController
             video.thumbnail_url = self.get_thumbnail(params[:video][:url])
             video.embed_html = self.get_embedded_html(params[:video][:url])
             if video.save
-                render json: video, except: [:create, :updated_at]
+                render json: video
             else
                 render json: {error: 'Video does not exist', category_id: video.category_id}
             end
@@ -21,8 +21,8 @@ class VideosController < ApplicationController
 
     def show
         video = Video.find_by(id: params[:id])
-        if video.save
-            render json: video, except: [:created_at, :updated_at]
+        if video
+            render json: video
         else
             render json: {message: 'Video does not exist'}
         end

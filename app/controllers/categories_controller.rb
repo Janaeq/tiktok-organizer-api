@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
     def index
         categories = Category.all
-        render json: CategorySerializer.new(categories).to_serialized_json
+        render json: categories
     end
 
     def create
         category = Category.create(category_params)
-        if category.save
+        if category
             render json: category
         else
             render json: {error: category.errors.full_messages.to_sentence}
@@ -15,8 +15,8 @@ class CategoriesController < ApplicationController
     
     def show
         category = Category.find_by(id: params[:id])
-        if category.save
-            render json: CategorySerializer.new(category).to_serialized_json
+        if category
+            render json: category
         else
             render json: {message: 'Category does not exist'}
         end
