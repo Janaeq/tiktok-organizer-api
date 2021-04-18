@@ -24,6 +24,9 @@ class CategoriesController < ApplicationController
 
     def destroy
         category = Category.find_by(id: params[:id])
+        category.videos.each {|video| 
+            video.delete
+        }
         category.delete
         render json: {message: "Successfully Deleted"}
     end
